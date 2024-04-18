@@ -34,6 +34,8 @@ app.get('*', (req, res) =>
 );
 
 // Start the server on the port
-app.listen(port, () =>
-    console.log(`Listening on http://localhost:${port}`)
-);
+const server = app.listen(port, () => {
+    const host = server.address().address === '::' ? 'localhost' : server.address().address;
+    const port = server.address().port;
+    console.log(`Listening at http://${host}:${port}`);
+});
