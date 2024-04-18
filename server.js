@@ -17,8 +17,10 @@ app.use(logger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Middleware for API routes
+app.use('/api', api);
+
 // Middleware for serving static files
-// app.use('/api', api);
 app.use(express.static('public'));
 
 // Get route for notes page
