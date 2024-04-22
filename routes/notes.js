@@ -15,27 +15,27 @@ notes.post('/', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuid(),
+            id: uuid(),
         };
 
         readAndAppend(newNote, './db/db.json');
-        res.json(`Note added successfully with ID: ${newNote.note_id}`);
+        res.json(`Note added successfully with ID: ${newNote.id}`);
     } else {
         res.error('Error adding note');
     }
 });
 
 // DELETE Route for a specific note
-notes.delete('/:note_id', (req, res) => {
-    const noteId = req.params.note_id;
+notes.delete('/:id', (req, res) => {
+    const id = req.params.id;
     readFromFile('./db/db.json')
         .then((data) => JSON.parse(data))
         .then((json) => {
-            const result = json.filter((note) => note.note_id !== noteId);
+            const result = json.filter((note) => note.id !== id);
 
             writeToFile('./db/db.json', result);
 
-            res.json(`Item ${noteId} deleted`);
+            res.json(`Item ${id} deleted`);
         });
 });
 
