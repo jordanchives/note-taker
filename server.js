@@ -1,16 +1,16 @@
-// Description: This file is the entry point for the application. It sets up the server and listens for incoming requests.
-// Dependencies: express, path, logger, api
-// Exported routes: none
+// Description: Entry point for the application. Sets up the server and handles incoming requests.
+
+// Import necessary modules
 const express = require('express');
 const path = require('path');
-const { logger } = require('./middleware/logger');
-const api = require('./routes/index');
+const { logger } = require('./middleware/logger'); // Import logger middleware
+const api = require('./routes/index'); // Import API routes
 
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001; // Set port for the server
 
-const app = express();
+const app = express(); // Create express app
 
-// Import custom middleware
+// Use custom middleware for logging
 app.use(logger);
 
 // Middleware for parsing JSON and urlencoded form data
@@ -23,17 +23,17 @@ app.use('/api', api);
 // Middleware for serving static files
 app.use(express.static('public'));
 
-// Get route for notes page
+// Route for serving notes page
 app.get('/notes', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// Get route for *
+// Route for serving other pages
 app.get('*', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
-// Start the server on the port
+// Start the server
 const server = app.listen(port, () => {
     const host = server.address().address === '::' ? 'localhost' : server.address().address;
     const port = server.address().port;
