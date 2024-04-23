@@ -1,7 +1,12 @@
 [
     {
-        "title": "Test Note 1",
-        "text": "TEST TEXT",
-        "id": "a58d"
+        "title": "Test 1",
+        "text": "Note \"Test 1\" text",
+        "id": "bab7"
+    },
+    {
+        "title": "Test 3",
+        "text": "\"Test 2\" was deleted",
+        "id": "caf7"
     }
 ]
